@@ -1,4 +1,4 @@
-﻿// Project:         Daggerfall Tools For Unity
+// Project:         Daggerfall Tools For Unity
 // Copyright:       Copyright (C) 2009-2021 Daggerfall Workshop
 // Web Site:        http://www.dfworkshop.net
 // License:         MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -113,7 +113,7 @@ namespace DaggerfallWorkshop.Game.UserInterface
             {
                 AdjustPanels();
                 lastSize = Size;
-                RefreshFolders();
+                //RefreshFolders();
             }
 
             if (confirmEnabled)
@@ -165,16 +165,21 @@ namespace DaggerfallWorkshop.Game.UserInterface
             //folderScroller.OnScrollDown += FolderScroller_OnScrollDown;
 
             // Setup initial folder conditions
+            //reuse this to check for arena2 folder in localstate
             RefreshDrives();
-            RefreshFolders();
-
+           // RefreshFolders();
+           //
             // Setup events
             confirmButton.OnMouseClick += ConfirmButton_OnMouseClick;
         }
 
         void RefreshDrives()
         {
+            string test = Application.persistentDataPath;
+            //append \arena2 to persistantDataPath
+            string path = Application.persistentDataPath + "/arena2";
             // DriveInfo not implemented on all platforms, need to use GetLogicalDrives
+            /*
             drives.Clear();
             drives.AddRange(Directory.GetLogicalDrives());
             if (drives.Count == 0)
@@ -186,8 +191,20 @@ namespace DaggerfallWorkshop.Game.UserInterface
                 driveList.AddItem(drive);
             }
 
-            driveList.SelectedIndex = 0;
-            currentPath = drives[driveList.SelectedIndex];
+            driveList.SelectedIndex = 0;*/
+
+            if (Directory.Exists(path))
+            {
+                currentPath = test;
+            }
+            else {
+                currentPath = "arena2 folder not present in localstate";
+
+            }
+            UpdatePathText();
+            RaisePathChangedEvent();
+            RaiseOnConfirmPathEvent();
+
         }
 
         void RefreshFolders()
@@ -277,11 +294,13 @@ namespace DaggerfallWorkshop.Game.UserInterface
 
         void UpdatePathText()
         {
-            int index = currentPath.Length - maxChars;
-            if (index < 0)
-                index = 0;
+           // string localFolder = Application.persistentDataPath;
 
-            pathLabel.Text = currentPath.Substring(index);
+         //   int index = currentPath.Length - maxChars;
+          //  if (index < 0)
+           //     index = 0;
+           
+            pathLabel.Text = currentPath;
         }
 
         void RaiseOnConfirmPathEvent()
@@ -302,9 +321,9 @@ namespace DaggerfallWorkshop.Game.UserInterface
 
         private void DriveList_OnSelectItem()
         {
-            currentPath = drives[driveList.SelectedIndex];
+           // currentPath = drives[driveList.SelectedIndex];
             UpdatePathText();
-            RefreshFolders();
+          //  RefreshFolders();
             RaisePathChangedEvent();
         }
 
@@ -332,7 +351,7 @@ namespace DaggerfallWorkshop.Game.UserInterface
             if (Directory.Exists(newPath))
             {
                 currentPath = newPath;
-                RefreshFolders();
+              //  RefreshFolders();
                 RaisePathChangedEvent();
 
                 // Add return path
@@ -358,10 +377,11 @@ namespace DaggerfallWorkshop.Game.UserInterface
 
         private void ConfirmButton_OnMouseClick(BaseScreenComponent sender, Vector2 position)
         {
-            if (confirmEnabled)
-                RaiseOnConfirmPathEvent();
-            else
-                FolderList_OnUseSelectedItem();
+            //if (confirmEnabled)
+            RaisePathChangedEvent();
+            RaiseOnConfirmPathEvent();
+           // else
+            //    FolderList_OnUseSelectedItem();
         }
 
         #endregion

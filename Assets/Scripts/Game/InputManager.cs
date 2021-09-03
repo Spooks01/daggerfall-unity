@@ -112,7 +112,7 @@ namespace DaggerfallWorkshop.Game
 
         float joystickUIMouseSensitivity = 1.0f;
         bool cursorVisible = true;
-        bool usingControllerCursor;
+        bool usingControllerCursor = true;
         Vector2 controllerCursorPosition = new Vector2(0,0);
         int controllerCursorWidth = 32;
         int controllerCursorHeight = 32;
@@ -558,7 +558,7 @@ namespace DaggerfallWorkshop.Game
             {
                 if (UsingController)
                 {
-                    Cursor.visible = false;
+                  //  Cursor.visible = false;
                     //Cursor.lockState = CursorLockMode.Locked;
 
                     GUI.depth = 0;
@@ -579,15 +579,15 @@ namespace DaggerfallWorkshop.Game
 
                     GUI.DrawTexture(new Rect(controllerCursorPosition.x, Screen.height - controllerCursorPosition.y, controllerCursorWidth, controllerCursorHeight), controllerCursorImage);
                 }
-                else
-                {
-                    Cursor.visible = true;
-                }
+              //  else
+             //   {
+             //       Cursor.visible = true;
+              //  }
             }
             else
             {
                 //note: we don't even need to do anything to hide the visibility of the controller cursor since it will stop rendering
-                Cursor.visible = false;
+             //   Cursor.visible = false;
             }
         }
 

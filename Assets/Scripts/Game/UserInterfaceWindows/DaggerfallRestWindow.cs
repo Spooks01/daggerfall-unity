@@ -620,6 +620,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 mb.TextBox.WidthOverride = 286;
                 mb.OnGotUserInput += TimedRestPrompt_OnGotUserInput;
                 mb.Show();
+                kbTemp = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.NumberPad);
             }
         }
 
@@ -700,6 +701,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             mb.TextBox.MaxCharacters = 8;
             mb.TextBox.WidthOverride = 286;
             mb.OnGotUserInput += LoiterPrompt_OnGotUserInput;
+            kbTemp = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.NumberPad);
             mb.Show();
         }
 
@@ -736,7 +738,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         private void TimedRestPrompt_OnGotUserInput(DaggerfallInputMessageBox sender, string input)
         {
             const int cannotRestMoreThan99HoursTextId = 26;
-
+            kbTemp.active = false;
             // Validate input
             int time = 0;
             bool result = int.TryParse(input, out time);
@@ -762,6 +764,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
 
         private void LoiterPrompt_OnGotUserInput(DaggerfallInputMessageBox sender, string input)
         {
+            kbTemp.active = false;
             // Validate input
             int time = 0;
             bool result = int.TryParse(input, out time);

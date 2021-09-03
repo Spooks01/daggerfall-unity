@@ -102,7 +102,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         #endregion
 
         #region Setup Methods
-
+       
         protected override void Setup()
         {
             // Main panel
@@ -270,6 +270,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             SetBackground(switchCharButton, saveButtonBackgroundColor, "switchCharButtonBackgroundColor");
             switchCharButton.OnMouseClick += SwitchCharButton_OnMouseClick;
             mainPanel.Components.Add(switchCharButton);
+           
         }
 
         public override void OnPush()
@@ -405,6 +406,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         protected virtual void SaveGame()
         {
             GameManager.Instance.SaveLoadManager.Save(currentPlayerName, saveNameTextBox.Text);
+            kbTemp.active = false;
             DaggerfallUI.Instance.PopToHUD();
         }
 
@@ -423,6 +425,8 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 switchClassicButton.Enabled = false;
                 saveNameTextBox.ReadOnly = false;
                 goButton.Label.Text = TextManager.Instance.GetLocalizedText("saveButton");
+                //open keyboard
+                kbTemp = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
             }
             else if (mode == Modes.LoadGame)
             {
@@ -467,10 +471,13 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         {
             if (mode == Modes.SaveGame)
             {
+               
+                saveNameTextBox.Text = kbTemp.text;
                 // Must have a save name
                 if (saveNameTextBox.Text.Length == 0)
                 {
                     DaggerfallUI.MessageBox(TextManager.Instance.GetLocalizedText("youMustEnterASaveName"));
+                    
                     return;
                 }
 

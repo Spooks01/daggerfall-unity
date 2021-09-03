@@ -136,7 +136,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         {
             AllowCancel = false;
             LoadResources();
-
+            //DaggerfallUnity.Settings.EnableController = true;
             // Add exit button
             Button exitButton = new Button();
             exitButton.Size = new Vector2(20, 9);
@@ -162,7 +162,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             InputManager.Instance.JoystickDeadzone = DaggerfallUnity.Settings.JoystickDeadzone;
 
             // Override cursor
-            SetCursor();
+           //SetCursor();
         }
 
         public override void Update()
@@ -182,11 +182,12 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
 
             // Sync controller enabling to current setting
             // This is a special realtime setting as controller enabling can change at any time, even during the setup process itself
-            if (enableController != null)
-            {
-                enableController.IsChecked = DaggerfallUnity.Settings.EnableController;
-                InputManager.Instance.EnableController = DaggerfallUnity.Settings.EnableController;
-            }
+            //since we're on xbox, always enable
+            //if (enableController != null)
+            //{
+            //   enableController.IsChecked = DaggerfallUnity.Settings.EnableController;
+            InputManager.Instance.EnableController = DaggerfallUnity.Settings.EnableController;
+            //}
 
             // Move to next setup stage
             if (moveNextStage)
@@ -226,7 +227,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             browser.Position = new Vector2(4, 30);
             browser.Size = new Vector2(250, 104);
             browser.HorizontalAlignment = HorizontalAlignment.Center;
-            browser.ConfirmEnabled = false;
+            browser.ConfirmEnabled = true;
             browser.OnConfirmPath += Browser_OnConfirmPath;
             browser.OnPathChanged += Browser_OnPathChanged;
             browserPanel.Components.Add(browser);
@@ -886,7 +887,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             if (state == StateManager.StateTypes.Start)
             {
                 StateManager.OnStateChange -= StateManager_OnStateChange;
-                SetCursor(true);
+                //SetCursor(true);
             }
         }
 
