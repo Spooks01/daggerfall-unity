@@ -71,6 +71,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             textBox.Position = new Vector2(80, 5);
             textBox.Size = new Vector2(214, 7);
             NativePanel.Components.Add(textBox);
+            textBox.OnMouseClick += TextBox_OnMouseClick;
 
             // Random name button
             randomNameButton = DaggerfallUI.AddButton(new Rect(279, 3, 36, 10), NativePanel);
@@ -116,8 +117,11 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         {
             base.Update();
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                kbTemp.active = false;
                 AcceptName();
+            }
+             
         }
 
         void AcceptName()
@@ -159,6 +163,12 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         void OkButton_OnMouseClick(BaseScreenComponent sender, Vector2 position)
         {
             AcceptName();
+        }
+
+
+        void TextBox_OnMouseClick(BaseScreenComponent sender, Vector2 position) {
+            //open the xbox keyboard when clicking the name field
+            kbTemp = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
         }
 
         #endregion

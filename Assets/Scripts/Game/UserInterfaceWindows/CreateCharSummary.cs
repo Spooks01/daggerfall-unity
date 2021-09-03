@@ -77,6 +77,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             // Add name editor
             textBox.Position = new Vector2(100, 5);
             textBox.Size = new Vector2(214, 7);
+            textBox.OnMouseClick += TextBox_OnMouseClick;
             NativePanel.Components.Add(textBox);
 
             // Add "Restart" button
@@ -88,8 +89,37 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             okButton.OnMouseClick += OkButton_OnMouseClick;
         }
 
-        #region Private Methods
+        public override void Update()
+        {
+            base.Update();
 
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                kbTemp.active = false;
+                statCheck();
+            }
+               
+            //AcceptName();
+            
+        }
+
+
+        #region Private Methods
+        void statCheck() {
+            if (statsRollout.BonusPool > 0 ||
+              skillsRollout.PrimarySkillBonusPoints > 0 ||
+              skillsRollout.MajorSkillBonusPoints > 0 ||
+              skillsRollout.MinorSkillBonusPoints > 0)
+            {
+                DaggerfallMessageBox messageBox = new DaggerfallMessageBox(uiManager, this);
+                messageBox.SetTextTokens(strYouMustDistributeYourBonusPoints);
+                messageBox.ClickAnywhereToClose = true;
+                messageBox.Show();
+            }
+            else
+            {
+                CloseWindow();
+            }
+        }
         void SetCharacterSheet(CharacterDocument characterDocument)
         {
             this.characterDocument = characterDocument;
@@ -145,20 +175,13 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
 
         void OkButton_OnMouseClick(BaseScreenComponent sender, Vector2 position)
         {
-            if (statsRollout.BonusPool > 0 || 
-                skillsRollout.PrimarySkillBonusPoints > 0 ||
-                skillsRollout.MajorSkillBonusPoints > 0 ||
-                skillsRollout.MinorSkillBonusPoints > 0)
-            {
-                DaggerfallMessageBox messageBox = new DaggerfallMessageBox(uiManager, this);
-                messageBox.SetTextTokens(strYouMustDistributeYourBonusPoints);
-                messageBox.ClickAnywhereToClose = true;
-                messageBox.Show();
-            }
-            else
-            {
-                CloseWindow();
-            }
+            statCheck();
+        }
+
+        void TextBox_OnMouseClick(BaseScreenComponent sender, Vector2 position)
+        {
+            //open the xbox keyboard when clicking the name field
+            kbTemp = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
         }
 
         #endregion
