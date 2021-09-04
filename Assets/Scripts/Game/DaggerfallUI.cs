@@ -102,6 +102,7 @@ namespace DaggerfallWorkshop.Game
         DaggerfallPauseOptionsWindow dfPauseOptionsWindow;
         DaggerfallCharacterSheetWindow dfCharacterSheetWindow;
         DaggerfallInventoryWindow dfInventoryWindow;
+        DaggerfallJoypadQuickMenu dfQuickMenu;
         DaggerfallControlsWindow dfControlsWindow;
         DaggerfallJoystickControlsWindow dfJoystickControlsWindow;
         DaggerfallUnityMouseControlsWindow dfUnityMouseControlsWindow;
@@ -223,6 +224,11 @@ namespace DaggerfallWorkshop.Game
             get { return dfInventoryWindow; }
         }
 
+ //      public DaggerfallJoypadQuickMenu QuickMenuWindow {
+
+  //          get { return dfQuickMenu;  }
+  //      }
+  
         public DaggerfallControlsWindow ControlsWindow
         {
             get { return dfControlsWindow; }
@@ -474,7 +480,7 @@ namespace DaggerfallWorkshop.Game
             dfPotionMakerWindow = (DaggerfallPotionMakerWindow)UIWindowFactory.GetInstance(UIWindowType.PotionMaker, uiManager, null);
             dfCourtWindow = (DaggerfallCourtWindow)UIWindowFactory.GetInstance(UIWindowType.Court, uiManager, null);
             dfExteriorAutomapWindow = (DaggerfallExteriorAutomapWindow)UIWindowFactory.GetInstance(UIWindowType.ExteriorAutomap, uiManager);
-
+            dfQuickMenu = (DaggerfallJoypadQuickMenu)UIWindowFactory.GetInstance(UIWindowType.QuickMenuWindow, uiManager, null);
             instantiatePersistentWindowInstances = false;
             RaiseOnInstantiatePersistentWindowInstances();
         }
@@ -504,6 +510,10 @@ namespace DaggerfallWorkshop.Game
                     break;
                 case DaggerfallUIMessages.dfuiOpenInventoryWindow:
                     uiManager.PushWindow(dfInventoryWindow);
+                    break;
+                case DaggerfallUIMessages.dfuiOpenJoypadQuickMenu:
+                    //add to this when window class is set up properly
+                    uiManager.PushWindow(dfQuickMenu);
                     break;
                 case DaggerfallUIMessages.dfuiOpenControlsWindow:
                     uiManager.PushWindow(dfControlsWindow);

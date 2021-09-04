@@ -522,7 +522,7 @@ namespace DaggerfallWorkshop.Game
             }
             else if (InputManager.Instance.ActionComplete(InputManager.Actions.Transport))
             {
-	            DaggerfallUI.PostMessage(DaggerfallUIMessages.dfuiOpenTransportWindow);
+                DaggerfallUI.PostMessage(DaggerfallUIMessages.dfuiOpenTransportWindow);
             }
             else if (InputManager.Instance.ActionComplete(InputManager.Actions.LogBook))
             {
@@ -539,6 +539,9 @@ namespace DaggerfallWorkshop.Game
             else if (InputManager.Instance.ActionComplete(InputManager.Actions.UseMagicItem))
             {
                 DaggerfallUI.PostMessage(DaggerfallUIMessages.dfuiOpenUseMagicItemWindow);
+            }
+            else if (InputManager.Instance.ActionComplete(InputManager.Actions.QuickMenu)) {
+                DaggerfallUI.PostMessage(DaggerfallUIMessages.dfuiOpenJoypadQuickMenu);
             }
 
             if (InputManager.Instance.ActionComplete(InputManager.Actions.Status))

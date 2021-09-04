@@ -354,6 +354,7 @@ namespace DaggerfallWorkshop.Game
             AutoRun,
             
             Unknown,
+            QuickMenu,
         }
 
         #endregion
@@ -1024,7 +1025,8 @@ namespace DaggerfallWorkshop.Game
             setBinding(KeyCode.I, Actions.Status, true);
             setBinding(KeyCode.F5, Actions.CharacterSheet, true);
             setBinding(KeyCode.F6, Actions.Inventory, true);
-
+            //temp keycode, change to joystick binding when everything is working
+            setBinding(KeyCode.F11, Actions.QuickMenu, true);
             setBinding(KeyCode.Mouse0, Actions.ActivateCenterObject, true);
             setBinding(KeyCode.Return, Actions.ActivateCursor, true);
 

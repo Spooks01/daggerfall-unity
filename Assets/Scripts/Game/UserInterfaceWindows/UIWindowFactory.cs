@@ -61,6 +61,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         UseMagicItem,
         VidPlayer,
         WitchesCovenPopup,
+        QuickMenuWindow = 99,
     }
 
     public static class UIWindowFactory
@@ -110,6 +111,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             { UIWindowType.UseMagicItem, typeof(DaggerfallUseMagicItemWindow) },
             { UIWindowType.VidPlayer, typeof(DaggerfallVidPlayerWindow) },
             { UIWindowType.WitchesCovenPopup, typeof(DaggerfallWitchesCovenPopupWindow) },
+            { UIWindowType.QuickMenuWindow, typeof(DaggerfallJoypadQuickMenu) },
         };
 
         /// <summary>
