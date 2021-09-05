@@ -45,6 +45,8 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         protected Button leftClickKeybindButton = new Button();
         protected Button middleClickKeybindButton = new Button();
         protected Button rightClickKeybindButton = new Button();
+        protected Button quickMenuKeybindButton = new Button();
+
         protected Button movementHorizontalAxisKeybindButton = new Button();
         protected Button movementVerticalAxisKeybindButton = new Button();
         protected Button lookHorizontalAxisKeybindButton = new Button();
@@ -156,7 +158,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             SetupUIKeybindButton(leftClickKeybindButton, 0, 210, 40);
             SetupUIKeybindButton(middleClickKeybindButton, 2, 210, 60);
             SetupUIKeybindButton(rightClickKeybindButton, 1, 210, 80);
-
+            
             joystickCameraSensitivitySlider = CreateSlider("Look Sensitivity", 15, 120, 0.1f, 4.0f, DaggerfallUnity.Settings.JoystickLookSensitivity);
 
             joystickUIMouseSensitivitySlider = CreateSlider("UI Mouse Sensitivity", 115, 120, 0.1f, 5.0f, DaggerfallUnity.Settings.JoystickCursorSensitivity);
