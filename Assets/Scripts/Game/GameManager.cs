@@ -493,12 +493,16 @@ namespace DaggerfallWorkshop.Game
 
         void Update()
         {
+
+           
+
             // Don't process game manager input messages when game not running
             if (!IsPlayingGame())
                 return;
 
             // Post message to open options dialog on escape during gameplay
-            if (InputManager.Instance.ActionComplete(InputManager.Actions.Escape))
+            // or Post when losing focus to prevent errors on console
+            if (InputManager.Instance.ActionComplete(InputManager.Actions.Escape) || !Application.isFocused)
             {
                 DaggerfallUI.PostMessage(DaggerfallUIMessages.dfuiOpenPauseOptionsDialog);
             }

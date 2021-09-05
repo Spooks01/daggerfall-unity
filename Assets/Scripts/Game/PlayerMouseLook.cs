@@ -100,6 +100,9 @@ namespace DaggerfallWorkshop.Game
                 return;
             }
 
+
+           
+
             bool applyLook = true;
 
             // Cursor activation toggle while game is running
@@ -112,6 +115,12 @@ namespace DaggerfallWorkshop.Game
                 cursorActive = !cursorActive;
             }
 
+        /*    if (!Application.isFocused)
+            {
+                cursorActive = true;
+
+            }*/
+            
             // Show cursor and unlock while active
             // While cursor is active, player can click on objects in scene using mouse similar to activating centre object
             // Clicking on UI element of large HUD will instead operate on that UI

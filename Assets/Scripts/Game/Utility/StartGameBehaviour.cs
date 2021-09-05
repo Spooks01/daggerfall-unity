@@ -221,7 +221,12 @@ namespace DaggerfallWorkshop.Game.Utility
 
             InputManager.Instance.EnableController = DaggerfallUnity.Settings.EnableController;
 
-            Application.runInBackground = DaggerfallUnity.Settings.RunInBackground;
+
+            //force this on always regardless of settings, prevents errors with game trying to detect mouse
+           // Application.runInBackground = DaggerfallUnity.Settings.RunInBackground;
+            Application.runInBackground = true;
+            //test
+
 
             // Set shadow resolution
             GameManager.UpdateShadowResolution();
