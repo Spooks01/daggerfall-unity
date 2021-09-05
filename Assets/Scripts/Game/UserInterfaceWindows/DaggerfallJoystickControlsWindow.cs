@@ -34,6 +34,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         const string rightClickString = "Right-Click";
         const string middleClickString = "Middle-Click";
         const string leftClickString = "Left-Click";
+        const string quickMenuString = "QuickMenu";
 
         Color mainPanelBackgroundColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         Color keybindButtonBackgroundColor = new Color(0.2f, 0.2f, 0.2f, 1.0f);
@@ -158,7 +159,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             SetupUIKeybindButton(leftClickKeybindButton, 0, 210, 40);
             SetupUIKeybindButton(middleClickKeybindButton, 2, 210, 60);
             SetupUIKeybindButton(rightClickKeybindButton, 1, 210, 80);
-            
+            SetupKeybindButton(quickMenuKeybindButton, InputManager.Actions.QuickMenu.ToString(), 210, 100);
             joystickCameraSensitivitySlider = CreateSlider("Look Sensitivity", 15, 120, 0.1f, 4.0f, DaggerfallUnity.Settings.JoystickLookSensitivity);
 
             joystickUIMouseSensitivitySlider = CreateSlider("UI Mouse Sensitivity", 115, 120, 0.1f, 5.0f, DaggerfallUnity.Settings.JoystickCursorSensitivity);
@@ -201,7 +202,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             UnsavedKeybindDict[leftClickString] = InputManager.Instance.GetKeyString(InputManager.Instance.GetJoystickUIBinding(InputManager.JoystickUIActions.LeftClick));
             UnsavedKeybindDict[middleClickString] = InputManager.Instance.GetKeyString(InputManager.Instance.GetJoystickUIBinding(InputManager.JoystickUIActions.MiddleClick));
             UnsavedKeybindDict[rightClickString] = InputManager.Instance.GetKeyString(InputManager.Instance.GetJoystickUIBinding(InputManager.JoystickUIActions.RightClick));
-
+            UnsavedKeybindDict[quickMenuString] = InputManager.Instance.GetKeyString(InputManager.Instance.GetBinding(InputManager.Actions.QuickMenu));    
             foreach (InputManager.AxisActions a in Enum.GetValues(typeof(InputManager.AxisActions)))
                 UnsavedKeybindDict[a.ToString()] = InputManager.Instance.GetAxisBinding(a);
 
@@ -255,6 +256,10 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 button.ToolTip = defaultToolTip;
                 button.SuppressToolTip = button.Label.Text != ControlsConfigManager.ElongatedButtonText;
                 button.ToolTipText = ControlsConfigManager.Instance.GetButtonText(code, true);
+            }
+            else if (action == quickMenuString) {
+                button.Label.Text = UnsavedKeybindDict[action];
+                button.OnMouseClick += QuickKeyButton_OnMouseClick;
             }
             else
                 button.Label.Text = UnsavedKeybindDict[action];
@@ -312,6 +317,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                             : action == InputManager.AxisActions.MovementVertical.ToString() ? "Movement V."
                             : action == InputManager.AxisActions.CameraHorizontal.ToString() ? "Camera H."
                             : action == InputManager.AxisActions.CameraVertical.ToString() ? "Camera V."
+                            : action == InputManager.Actions.QuickMenu.ToString() ? "Quick Menu"
                             : action;
 
             label.TextColor = DaggerfallUI.DaggerfallDefaultTextColor;
@@ -490,6 +496,11 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                         Debug.LogFormat("Bound joystick {0} with Code {1}", action, code.ToString());
                     }
                 }
+                else if (action == quickMenuString) {
+                    KeyCode code = InputManager.Instance.ParseKeyCodeString(UnsavedKeybindDict[action]);
+                    InputManager.Actions tmpAction = InputManager.Actions.QuickMenu;
+                    InputManager.Instance.SetBinding(code, tmpAction);
+                }
                 else
                 {
                     InputManager.AxisActions axisAction = (InputManager.AxisActions)Enum.Parse(typeof(InputManager.AxisActions), action);
@@ -534,6 +545,11 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         }
 
         private void UIKeybindButton_OnMouseClick(BaseScreenComponent sender, Vector2 position)
+        {
+            KeybindButton_OnMouseClick(sender, position, false);
+        }
+
+        private void QuickKeyButton_OnMouseClick(BaseScreenComponent sender, Vector2 position)
         {
             KeybindButton_OnMouseClick(sender, position, false);
         }

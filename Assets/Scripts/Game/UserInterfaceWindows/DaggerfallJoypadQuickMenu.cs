@@ -20,16 +20,16 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
     {
         Color buttonBackGroundColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         KeyCode toggleClosedBinding;
-        protected Rect mapRect = new Rect(10, 100, 40, 40);
-        protected Rect trvRect = new Rect(60, 100, 40, 40);
-        protected Rect invRect = new Rect(110, 100, 40, 40);
-        protected Rect charRect = new Rect(160, 100, 40, 40);
-        protected Rect questRect = new Rect(210, 100, 40, 40);
-        protected Rect restRect = new Rect(260, 100, 40, 40);
+        protected Rect mapRect = new Rect(15, 100, 40, 40);
+        protected Rect trvRect = new Rect(65, 100, 40, 40);
+        protected Rect invRect = new Rect(115, 100, 40, 40);
+        protected Rect charRect = new Rect(165, 100, 40, 40);
+        protected Rect questRect = new Rect(215, 100, 40, 40);
+        protected Rect restRect = new Rect(265, 100, 40, 40);
         protected Button mapButton;
         protected Button trvButton;
         protected Button invButton;
-        protected Button charButton;
+        protected Button charButton;//
         protected Button questButton;
         protected Button restButton;
         public DaggerfallJoypadQuickMenu(IUserInterfaceManager uiManager, DaggerfallBaseWindow previous = null)
