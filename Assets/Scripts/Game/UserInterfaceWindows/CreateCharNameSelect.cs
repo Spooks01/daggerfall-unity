@@ -84,6 +84,8 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             okButton = DaggerfallUI.AddButton(new Rect(263, 172, 39, 22), NativePanel);
             okButton.OnMouseClick += OkButton_OnMouseClick;
 
+            //open keyboard
+            kbTemp = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
             // First display of random button
             ShowRandomButton();
         }

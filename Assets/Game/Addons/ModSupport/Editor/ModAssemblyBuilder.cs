@@ -31,7 +31,7 @@ namespace DaggerfallWorkshop.Game.Utility
             var assemblyBuilder = new AssemblyBuilder(assemblyPath, scriptPaths)
             {
                 referencesOptions = ReferencesOptions.UseEngineModules,
-                buildTargetGroup = BuildTargetGroup.Standalone,
+                buildTargetGroup = BuildTargetGroup.WSA,
                 additionalReferences = GetAdditionalReferences()
             };
 

@@ -127,7 +127,7 @@ namespace DaggerfallWorkshop.Game.Utility.ModSupport
         void Awake()
         {
             if (string.IsNullOrEmpty(ModDirectory))
-                ModDirectory = Path.Combine(Application.streamingAssetsPath, "Mods");
+                ModDirectory = Path.Combine(Application.persistentDataPath, "Mods");
         }
 
         void Start()
