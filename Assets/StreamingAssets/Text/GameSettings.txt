@@ -204,3 +204,7 @@ colour,                                             colour
 monochrome,                                         monochrome
 
 reset,                                              Reset
+distantTerrain,                                     Distant Terrain
+distantTerrainInfo,                                 Enables distant terrain mod
+enhancedSky,                                        Enhanced Sky
+enhancedSkyInfo,                                    Enables enhanced sky mod

@@ -160,6 +160,8 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
         Checkbox dungeonLightShadows;
         Checkbox interiorLightShadows;
         Checkbox exteriorLightShadows;
+        Checkbox distantTerrain;
+        Checkbox enhancedSky;
 
         // Accessibility
         Button automapTempleColor;
@@ -363,7 +365,8 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
             mainFilterMode = AddSlider(leftPanel, "mainFilterMode", DaggerfallUnity.Settings.MainFilterMode, filterModes);
             guiFilterMode = AddSlider(leftPanel, "guiFilterMode", DaggerfallUnity.Settings.GUIFilterMode, filterModes);
             videoFilterMode = AddSlider(leftPanel, "videoFilterMode", DaggerfallUnity.Settings.VideoFilterMode, filterModes);
-
+            distantTerrain = AddCheckbox(leftPanel, "distantTerrain", DaggerfallUnity.Settings.DistantTerrain);
+            enhancedSky = AddCheckbox(leftPanel, "enhancedSky", DaggerfallUnity.Settings.EnhancedSky);
             y = 0;
 
             // Advanced settings
@@ -385,6 +388,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 DaggerfallUnity.Settings.RetroRenderingMode, "Off", "320x200", "640x400");
             postProcessingInRetroMode = AddSlider(rightPanel, "postProcessingInRetroMode",
                 DaggerfallUnity.Settings.PostProcessingInRetroMode, "Off", "Posterization (full)", "Posterization (-sky)", "Palettization (full)", "Palettization (-sky)");
+           
         }
 
         private void Accessibility(Panel leftPanel, Panel rightPanel)
@@ -485,6 +489,7 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 DaggerfallUnity.Settings.ResolutionWidth = selectedResolution.width;
                 DaggerfallUnity.Settings.ResolutionHeight = selectedResolution.height;
                 DaggerfallUnity.Settings.Fullscreen = fullscreen.IsChecked;
+               
                 //DaggerfallUnity.Settings.ExclusiveFullscreen = exclusiveFullscreen.IsChecked;
 
                 if (DaggerfallUnity.Settings.ExclusiveFullscreen && DaggerfallUnity.Settings.Fullscreen)
@@ -506,6 +511,8 @@ namespace DaggerfallWorkshop.Game.UserInterfaceWindows
                 QualitySettings.SetQualityLevel(qualityLevel.ScrollIndex);
             }
             Application.runInBackground = DaggerfallUnity.Settings.RunInBackground = runInBackground.IsChecked;
+            DaggerfallUnity.Settings.EnhancedSky = enhancedSky.IsChecked;
+            DaggerfallUnity.Settings.DistantTerrain = distantTerrain.IsChecked;
             DaggerfallUnity.Settings.MainFilterMode = mainFilterMode.ScrollIndex;
             DaggerfallUnity.Settings.GUIFilterMode = guiFilterMode.ScrollIndex;
             DaggerfallUnity.Settings.VideoFilterMode = videoFilterMode.ScrollIndex;

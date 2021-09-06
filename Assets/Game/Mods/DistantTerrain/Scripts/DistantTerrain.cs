@@ -876,7 +876,12 @@ namespace DistantTerrain
                     if (!terrainTransitionRingUpdateRunning) // if at the moment no terrain transition ring update is still in progress
                     {
                         // update terrain transition ring in this Update() iteration if no terrain transition ring update is still in progress - otherwise postprone
-                        GenerateTerrainTransitionRing(); // update
+                        try
+                        {
+                            GenerateTerrainTransitionRing(); // update
+                        }catch(Exception e){
+                            Debug.Log(e);
+                        }
                         updateTerrainTransitionRing = false; // mark as updated
                     }
                 }

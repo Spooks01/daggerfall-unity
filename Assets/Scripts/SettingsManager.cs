@@ -109,6 +109,8 @@ namespace DaggerfallWorkshop
         public int CursorWidth { get; set; }
         public int CursorHeight { get; set; }
 
+        public bool DistantTerrain{get; set;}
+        public bool EnhancedSky { get; set; }
         // [Audio]
         public string SoundFont { get; set; }
         public bool AlternateMusic { get; set; }
@@ -268,6 +270,8 @@ namespace DaggerfallWorkshop
             ExteriorShadowDistance = GetFloat(sectionVideo, "ExteriorShadowDistance", 0.1f, 150.0f);
             EnableTextureArrays = GetBool(sectionVideo, "EnableTextureArrays");
             RandomDungeonTextures = GetInt(sectionVideo, "RandomDungeonTextures", 0, 4);
+            EnhancedSky = GetBool(sectionVideo, "EnhancedSky");
+            DistantTerrain = GetBool(sectionVideo, "DistantTerrain");
 
             SoundFont = GetString(sectionAudio, "SoundFont");
             AlternateMusic = GetBool(sectionAudio, "AlternateMusic");
@@ -411,6 +415,8 @@ namespace DaggerfallWorkshop
             SetFloat(sectionVideo, "ExteriorShadowDistance", ExteriorShadowDistance);
             SetBool(sectionVideo, "EnableTextureArrays", EnableTextureArrays);
             SetInt(sectionVideo, "RandomDungeonTextures", RandomDungeonTextures);
+            SetBool(sectionVideo, "DistantTerrain", DistantTerrain);
+            SetBool(sectionVideo, "EnhancedSky", EnhancedSky);
 
             SetString(sectionAudio, "SoundFont", SoundFont);
             SetBool(sectionAudio, "AlternateMusic", AlternateMusic);

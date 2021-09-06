@@ -115,6 +115,13 @@ namespace DaggerfallWorkshop.Game.Utility
         void Start()
         {
             ApplyStartSettings();
+            //load these if option selected
+            if (DaggerfallUnity.Settings.DistantTerrain) {
+                DistantTerrain._startupMod.InitStart();
+            }
+            if (DaggerfallUnity.Settings.EnhancedSky) {
+                EnhancedSky._startupMod.InitStart();
+            }            
             SaveLoadManager.OnLoad += SaveLoadManager_OnLoad;
         }
 
@@ -278,9 +285,7 @@ namespace DaggerfallWorkshop.Game.Utility
             // Streaming world terrain distance
             GameManager.Instance.StreamingWorld.TerrainDistance = DaggerfallUnity.Settings.TerrainDistance;
 
-            //add if statement
-            DistantTerrain._startupMod.InitStart();
-            EnhancedSky._startupMod.InitStart();
+           
         }
 
         #endregion

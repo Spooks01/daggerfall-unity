@@ -22,7 +22,7 @@ namespace DistantTerrain
 
         // Settings
         private static bool enableTerrainTransition = true;
-        private static bool enableFadeIntoSkybox = false;
+        private static bool enableFadeIntoSkybox = true;
         private static bool enableSeaReflections = false;
         private static bool enableImprovedTerrain = true;
         private static bool indicateLocations = true;
