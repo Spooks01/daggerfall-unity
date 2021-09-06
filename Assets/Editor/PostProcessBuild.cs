@@ -15,7 +15,7 @@ public class PostProcessBuild
 
         if (target == BuildTarget.StandaloneWindows || target == BuildTarget.StandaloneWindows64 ||
             target == BuildTarget.StandaloneLinux64 ||
-            target == BuildTarget.StandaloneOSX)
+            target == BuildTarget.StandaloneOSX || target == BuildTarget.WSAPlayer)
         {
             // Get build path
             string pureBuildPath = Path.GetDirectoryName(pathToBuiltProject);

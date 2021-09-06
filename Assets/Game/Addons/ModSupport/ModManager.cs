@@ -695,6 +695,7 @@ namespace DaggerfallWorkshop.Game.Utility.ModSupport
                     continue;
                 }
                 Debug.Log("ModManager - started loading mod: " + mod.Title);
+                
                 mod.CompileSourceToAssemblies();
             }
             Debug.Log("ModManager - init finished.  Mod Count: " + LoadedModCount);

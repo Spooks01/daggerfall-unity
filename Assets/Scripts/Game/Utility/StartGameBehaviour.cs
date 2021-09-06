@@ -277,6 +277,10 @@ namespace DaggerfallWorkshop.Game.Utility
 
             // Streaming world terrain distance
             GameManager.Instance.StreamingWorld.TerrainDistance = DaggerfallUnity.Settings.TerrainDistance;
+
+            //add if statement
+            DistantTerrain._startupMod.InitStart();
+            EnhancedSky._startupMod.InitStart();
         }
 
         #endregion

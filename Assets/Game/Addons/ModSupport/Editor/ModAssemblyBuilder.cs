@@ -28,10 +28,12 @@ namespace DaggerfallWorkshop.Game.Utility
         /// <returns>Value indicating if operation was succesful.</returns>
         internal static bool Compile(string assemblyPath, params string[] scriptPaths)
         {
+          
             var assemblyBuilder = new AssemblyBuilder(assemblyPath, scriptPaths)
             {
-                referencesOptions = ReferencesOptions.UseEngineModules,
+                referencesOptions = ReferencesOptions.None,
                 buildTargetGroup = BuildTargetGroup.WSA,
+                buildTarget = BuildTarget.WSAPlayer,
                 additionalReferences = GetAdditionalReferences()
             };
 

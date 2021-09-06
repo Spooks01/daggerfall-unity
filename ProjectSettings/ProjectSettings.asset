@@ -665,7 +665,7 @@ PlayerSettings:
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform:
     Standalone: 3
-    WSA: 6
+    WSA: 3
   m_RenderingPath: 3
   m_MobileRenderingPath: 1
   metroPackageName: DaggerfallUnity
@@ -695,6 +695,7 @@ PlayerSettings:
       InternetClientServer: True
       RemovableStorage: True
       InternetClient: True
+      CodeGeneration: True
   metroTargetDeviceFamilies:
     Desktop: True
     Xbox: True

@@ -1,4 +1,4 @@
-﻿using Mono.CSharp;
+using Mono.CSharp;
 using System;
 using System.CodeDom;
 using System.CodeDom.Compiler;
@@ -267,6 +267,7 @@ namespace CSharpCompiler
             //settings.BreakOnInternalError
             //settings.Checked;
             //settings.DebugFlags;
+           //settings.Target = Target.
             //settings.DocumentationFile;
             settings.Encoding = System.Text.Encoding.UTF8;
             //settings.EnhancedWarnings;
