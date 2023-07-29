@@ -5,6 +5,3 @@ Small tweaks to [Daggerfall Unity](https://github.com/Interkarma/daggerfall-unit
 + ~~streamline controls~~
 + ~~finish adding on screen keyboard to UI elements that need it~~
 + add proper default keybinds
-
-## License
-+ MIT License
